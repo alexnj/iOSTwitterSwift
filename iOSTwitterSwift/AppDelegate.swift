@@ -37,7 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.backgroundColor = UIColor.whiteColor()
         
         // Initialize our first view and attach it to window.
-        self.showMainView()
+        if (TwitterClient.sharedInstance.isAuthorized()) {
+            self.showMainView()
+        }
+        else {
+            self.showLoginView()
+        }
 
         // Make our window.
         self.window!.makeKeyAndVisible()

@@ -19,5 +19,14 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         }
         return Static.instance
     }
+
+    init() {
+        let apiUrl: NSURL = NSURL(string: "https://api.twitter.com/1.1/");
+        super.init(baseURL: apiUrl, consumerKey: consumerKey, consumerSecret: consumerSecret);
+    }
+    
+    func isAuthorized() -> Bool {
+        return super.authorized
+    }
     
 }

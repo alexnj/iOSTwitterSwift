@@ -9,6 +9,7 @@
 #ifndef iOSTwitterSwift_BridgingHeader_h
 #define iOSTwitterSwift_BridgingHeader_h
 
-#import <BDBOAuth1RequestOperationManager.h>
+#import "NSDictionary+BDBOAuth1Manager.h"
+#import "BDBOAuth1RequestOperationManager.h"
 
 #endif
