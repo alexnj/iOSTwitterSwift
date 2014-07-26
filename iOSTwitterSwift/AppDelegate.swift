@@ -13,10 +13,18 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
+    var navController: UINavigationController?
     
     func showMainView() {
-        let vc: TweetListViewController = TweetListViewController();
-        self.window!.rootViewController = vc;
+        // Create default view.
+        let vc: TweetListViewController = TweetListViewController()
+        
+        // Create navigation controller
+        self.navController = UINavigationController(rootViewController: vc)
+
+        // Attach navigation controller as the window's root view.
+        self.window!.rootViewController = self.navController!;
+
     }
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
