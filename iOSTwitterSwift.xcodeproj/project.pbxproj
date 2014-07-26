@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		388880F219844B1100FABCBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388880F119844B1100FABCBF /* AppDelegate.swift */; };
 		388880F519844B1100FABCBF /* iOSTwitterSwift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 388880F319844B1100FABCBF /* iOSTwitterSwift.xcdatamodeld */; };
-		388880F719844B1100FABCBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388880F619844B1100FABCBF /* ViewController.swift */; };
-		388880FA19844B1100FABCBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388880F819844B1100FABCBF /* Main.storyboard */; };
 		388880FC19844B1100FABCBF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388880FB19844B1100FABCBF /* Images.xcassets */; };
 		3888810819844B1100FABCBF /* iOSTwitterSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3888810719844B1100FABCBF /* iOSTwitterSwiftTests.swift */; };
 		3888811519844C4A00FABCBF /* TweetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3888811319844C4A00FABCBF /* TweetListViewController.swift */; };
@@ -32,8 +30,6 @@
 		388880F019844B1100FABCBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		388880F119844B1100FABCBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		388880F419844B1100FABCBF /* iOSTwitterSwift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSTwitterSwift.xcdatamodel; sourceTree = "<group>"; };
-		388880F619844B1100FABCBF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		388880F919844B1100FABCBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		388880FB19844B1100FABCBF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3888810119844B1100FABCBF /* iOSTwitterSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTwitterSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3888810619844B1100FABCBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,8 +79,6 @@
 			children = (
 				3888811719844C5000FABCBF /* View-Controllers */,
 				388880F119844B1100FABCBF /* AppDelegate.swift */,
-				388880F619844B1100FABCBF /* ViewController.swift */,
-				388880F819844B1100FABCBF /* Main.storyboard */,
 				388880FB19844B1100FABCBF /* Images.xcassets */,
 				388880F319844B1100FABCBF /* iOSTwitterSwift.xcdatamodeld */,
 				388880EF19844B1100FABCBF /* Supporting Files */,
@@ -206,7 +200,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				388880FA19844B1100FABCBF /* Main.storyboard in Resources */,
 				388880FC19844B1100FABCBF /* Images.xcassets in Resources */,
 				3888811619844C4A00FABCBF /* TweetListViewController.xib in Resources */,
 			);
@@ -227,7 +220,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3888811519844C4A00FABCBF /* TweetListViewController.swift in Sources */,
-				388880F719844B1100FABCBF /* ViewController.swift in Sources */,
 				388880F219844B1100FABCBF /* AppDelegate.swift in Sources */,
 				388880F519844B1100FABCBF /* iOSTwitterSwift.xcdatamodeld in Sources */,
 			);
@@ -250,17 +242,6 @@
 			targetProxy = 3888810219844B1100FABCBF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		388880F819844B1100FABCBF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				388880F919844B1100FABCBF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3888810919844B1100FABCBF /* Debug */ = {
@@ -415,6 +396,7 @@
 				3888810D19844B1100FABCBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3888810E19844B1100FABCBF /* Build configuration list for PBXNativeTarget "iOSTwitterSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +405,7 @@
 				3888811019844B1100FABCBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
