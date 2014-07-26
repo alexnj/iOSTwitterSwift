@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3888000D19845DFD008F0A6E /* TwitterApiSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3888000C19845DFD008F0A6E /* TwitterApiSecrets.swift */; };
+		3888001019845E7B008F0A6E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3888000E19845E7B008F0A6E /* LoginViewController.swift */; };
+		3888001119845E7B008F0A6E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3888000F19845E7B008F0A6E /* LoginViewController.xib */; };
+		3888001319845F0A008F0A6E /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3888001219845F0A008F0A6E /* TwitterClient.swift */; };
 		388880F219844B1100FABCBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388880F119844B1100FABCBF /* AppDelegate.swift */; };
 		388880F519844B1100FABCBF /* iOSTwitterSwift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 388880F319844B1100FABCBF /* iOSTwitterSwift.xcdatamodeld */; };
 		388880FC19844B1100FABCBF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388880FB19844B1100FABCBF /* Images.xcassets */; };
@@ -29,6 +33,10 @@
 /* Begin PBXFileReference section */
 		315CEF1336CE4C7AAA0B2372 /* libPods-iOSTwitterSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSTwitterSwift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3888000A198459FD008F0A6E /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		3888000C19845DFD008F0A6E /* TwitterApiSecrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiSecrets.swift; sourceTree = "<group>"; };
+		3888000E19845E7B008F0A6E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3888000F19845E7B008F0A6E /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		3888001219845F0A008F0A6E /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		388880EC19844B1100FABCBF /* iOSTwitterSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSTwitterSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388880F019844B1100FABCBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		388880F119844B1100FABCBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +77,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3888000B19845DCD008F0A6E /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				3888000C19845DFD008F0A6E /* TwitterApiSecrets.swift */,
+				3888001219845F0A008F0A6E /* TwitterClient.swift */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
 		388880E319844B1100FABCBF = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +109,7 @@
 		388880EE19844B1100FABCBF /* iOSTwitterSwift */ = {
 			isa = PBXGroup;
 			children = (
+				3888000B19845DCD008F0A6E /* Clients */,
 				3888000A198459FD008F0A6E /* BridgingHeader.h */,
 				3888811719844C5000FABCBF /* View-Controllers */,
 				388880F119844B1100FABCBF /* AppDelegate.swift */,
@@ -132,6 +150,8 @@
 			children = (
 				3888811319844C4A00FABCBF /* TweetListViewController.swift */,
 				3888811419844C4A00FABCBF /* TweetListViewController.xib */,
+				3888000E19845E7B008F0A6E /* LoginViewController.swift */,
+				3888000F19845E7B008F0A6E /* LoginViewController.xib */,
 			);
 			name = "View-Controllers";
 			sourceTree = "<group>";
@@ -220,6 +240,7 @@
 			files = (
 				388880FC19844B1100FABCBF /* Images.xcassets in Resources */,
 				3888811619844C4A00FABCBF /* TweetListViewController.xib in Resources */,
+				3888001119845E7B008F0A6E /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,8 +291,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3888000D19845DFD008F0A6E /* TwitterApiSecrets.swift in Sources */,
 				3888811519844C4A00FABCBF /* TweetListViewController.swift in Sources */,
 				388880F219844B1100FABCBF /* AppDelegate.swift in Sources */,
+				3888001019845E7B008F0A6E /* LoginViewController.swift in Sources */,
+				3888001319845F0A008F0A6E /* TwitterClient.swift in Sources */,
 				388880F519844B1100FABCBF /* iOSTwitterSwift.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
