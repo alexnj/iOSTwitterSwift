@@ -13,10 +13,22 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
-
+    
+    func showMainView() {
+        let vc: TweetListViewController = TweetListViewController();
+        self.window!.rootViewController = vc;
+    }
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
-        // Override point for customization after application launch.
+        // Create the main window.
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window!.backgroundColor = UIColor.whiteColor()
+        
+        // Initialize our first view and attach it to window.
+        self.showMainView()
+
+        // Make our window.
+        self.window!.makeKeyAndVisible()
         return true
     }
 
