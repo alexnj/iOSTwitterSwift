@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore;
 
 class TweetTableViewCell: UITableViewCell {
     @IBOutlet var userProfileImage: UIImageView!
@@ -29,8 +30,38 @@ class TweetTableViewCell: UITableViewCell {
             self.userScreenName.text = tweet!.user.screenName
             self.tweetText.text = tweet!.text
             self.createdAt.text = tweet!.getTimeElapsedSinceCreatedAt()
+            
+            // Set image.
+            NSURLConnection.sendAsynchronousRequest(
+                NSURLRequest(URL: NSURL(string: tweet!.user.profileImageUrl)),
+                queue: NSOperationQueue.mainQueue(),
+                completionHandler: {
+                    (response: NSURLResponse!, data: NSData!, err: NSError!) -> Void in
+                    let image = UIImage(data: data)
+                    self.setImageOnMainThread(self.userProfileImage, image:image)
+                }
+            )
+            
         }
     }
+    }
+    
+    func setImageOnMainThread(imageView: UIImageView, image: UIImage?) {
+        if (!image) {
+            return;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(),
+            { ()->Void in
+                let t = CATransition()
+                t.type = kCATransitionFade
+                t.duration = 0.5
+                t.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                imageView.layer.addAnimation(t, forKey: nil)
+                
+                imageView.image = image
+            }
+        );
     }
     
     override func awakeFromNib() {
