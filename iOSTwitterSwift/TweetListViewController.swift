@@ -23,6 +23,11 @@ class TweetListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         self.tweetList.delegate = self
         self.tweetList.dataSource = self
+        
+        self.tweetList.rowHeight = 100
+        
+        let tableViewNib: UINib = UINib(nibName: "TweetTableViewCell", bundle: nil)
+        self.tweetList.registerNib(tableViewNib, forCellReuseIdentifier: "TweetTableViewCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,11 +39,11 @@ class TweetListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let v: UITableViewCell = UITableViewCell()
-        v.textLabel.text = self.tweets[indexPath.row].text
-        return v
+        let cell: TweetTableViewCell = tableView.dequeueReusableCellWithIdentifier("TweetTableViewCell", forIndexPath: indexPath!) as TweetTableViewCell
+        cell.tweet = self.tweets[indexPath.row];
+        return cell;
     }
-    
+
     func updateTimeline() {
         TwitterClient.sharedInstance.getTimeline(20,
             success: {

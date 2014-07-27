@@ -17,10 +17,19 @@ class Tweet {
         self.user = User()
     }
     
+    func getTimeElapsedSinceCreatedAt() -> String {
+        if let dateTweeted: NSDate = self.dateTweeted {
+            return Tweet.getDateFormatterObject().stringFromDate(dateTweeted)
+        }
+        else {
+            return "";
+        }
+    }
+    
     class func getDateFormatterObject() -> NSDateFormatter {
         let dateFormatter: NSDateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
+        dateFormatter.dateFormat = "eee, MMM dd"
         
         return dateFormatter;
     }
@@ -32,7 +41,11 @@ class Tweet {
         if let url: String = dictTweet["url"] as? String {
             tweet.url = NSURL(string: url)
         }
-        tweet.dateTweeted = Tweet.getDateFormatterObject().dateFromString(dictTweet["created_at"] as String)
+        
+        let formatter: NSDateFormatter = NSDateFormatter()
+        formatter.dateFormat = "eee, MMM dd HH:mm:ss ZZZZ yyyy"
+        tweet.dateTweeted = formatter.dateFromString(dictTweet["created_at"] as String)
+        
         tweet.user = User.fromDictionary(dictTweet["user"] as NSDictionary);
 
         return tweet;
