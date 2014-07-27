@@ -10,7 +10,7 @@ import Foundation
 class Tweet {
     var text: String = ""
     var url: NSURL?
-    var dateTweeted: NSDate?
+    var createdAt: NSDate?
     var user: User
 
     init() {
@@ -18,12 +18,41 @@ class Tweet {
     }
     
     func getTimeElapsedSinceCreatedAt() -> String {
-        if let dateTweeted: NSDate = self.dateTweeted {
-            return Tweet.getDateFormatterObject().stringFromDate(dateTweeted)
+        let interval = Float(self.createdAt!.timeIntervalSinceNow)
+        let second: Float = 1.0, minute: Float = second*60, hour: Float = minute*60, day: Float = hour*24
+        var num: Float = abs(interval),
+            beforeOrAfter = "before",
+            unit = "day",
+            retVal = "now";
+        
+        if (interval == 0) {
+            return retVal
         }
-        else {
-            return "";
+        
+        if (interval > 0) {
+            beforeOrAfter = "after"
         }
+        
+        if (num >= day) {
+            num /= day;
+            if (num > 1) {
+                unit = "d"
+            }
+        }
+        else if (num >= hour) {
+            num /= hour;
+            unit = "h"
+        }
+        else if (num >= minute) {
+            num /= minute;
+            unit = "m";
+        }
+        else if (num >= second) {
+            num /= second;
+            unit = "s";
+        }
+        
+        return "\(Int(num))\(unit)"
     }
     
     class func getDateFormatterObject() -> NSDateFormatter {
@@ -44,7 +73,7 @@ class Tweet {
         
         let formatter: NSDateFormatter = NSDateFormatter()
         formatter.dateFormat = "eee, MMM dd HH:mm:ss ZZZZ yyyy"
-        tweet.dateTweeted = formatter.dateFromString(dictTweet["created_at"] as String)
+        tweet.createdAt = formatter.dateFromString(dictTweet["created_at"] as String)
         
         tweet.user = User.fromDictionary(dictTweet["user"] as NSDictionary);
 
