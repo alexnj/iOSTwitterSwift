@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		383D21E61984B11B0050B29A /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383D21E51984B11B0050B29A /* Tweet.swift */; };
 		3888000D19845DFD008F0A6E /* TwitterApiSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3888000C19845DFD008F0A6E /* TwitterApiSecrets.swift */; };
 		3888001019845E7B008F0A6E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3888000E19845E7B008F0A6E /* LoginViewController.swift */; };
 		3888001119845E7B008F0A6E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3888000F19845E7B008F0A6E /* LoginViewController.xib */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		315CEF1336CE4C7AAA0B2372 /* libPods-iOSTwitterSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSTwitterSwift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		383D21E51984B11B0050B29A /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		3888000A198459FD008F0A6E /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		3888000C19845DFD008F0A6E /* TwitterApiSecrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiSecrets.swift; sourceTree = "<group>"; };
 		3888000E19845E7B008F0A6E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		383D21E41984B0FE0050B29A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				383D21E51984B11B0050B29A /* Tweet.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		3888000B19845DCD008F0A6E /* Clients */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +119,7 @@
 		388880EE19844B1100FABCBF /* iOSTwitterSwift */ = {
 			isa = PBXGroup;
 			children = (
+				383D21E41984B0FE0050B29A /* Models */,
 				3888000B19845DCD008F0A6E /* Clients */,
 				3888000A198459FD008F0A6E /* BridgingHeader.h */,
 				3888811719844C5000FABCBF /* View-Controllers */,
@@ -294,6 +305,7 @@
 				3888000D19845DFD008F0A6E /* TwitterApiSecrets.swift in Sources */,
 				3888811519844C4A00FABCBF /* TweetListViewController.swift in Sources */,
 				388880F219844B1100FABCBF /* AppDelegate.swift in Sources */,
+				383D21E61984B11B0050B29A /* Tweet.swift in Sources */,
 				3888001019845E7B008F0A6E /* LoginViewController.swift in Sources */,
 				3888001319845F0A008F0A6E /* TwitterClient.swift in Sources */,
 				388880F519844B1100FABCBF /* iOSTwitterSwift.xcdatamodeld in Sources */,
