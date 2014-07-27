@@ -65,14 +65,19 @@ class TwitterClient: BDBOAuth1RequestOperationManager  {
     
     // MARK: APIs
     
-    func getTimeline(count: Int, success: ((operation: AFHTTPRequestOperation, object: AnyObject)->Void), failure: ((operation: AFHTTPRequestOperation, err: NSError)->Void)) {
+    func getTimeline(count: Int, success: ((tweets: Array<Tweet>)->Void), failure: ((operation: AFHTTPRequestOperation, err: NSError)->Void)) {
         
         self.GET("statuses/home_timeline.json?count=20", parameters: nil,
             success: {
-                (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
-
-                NSLog("Tweets array \(responseObject as NSArray)")
-                    success(operation: operation, object: responseObject)
+                (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                
+                var tweets: Array<Tweet> = Array();
+                let tweetsDictionaryArray: Array<Dictionary<String,AnyObject>> = response as Array<Dictionary<String,AnyObject>>;
+                for tweet in tweetsDictionaryArray {
+                    tweets.append(Tweet.fromJsonTweet(tweet));
+                }
+                
+                success(tweets: tweets)
                 
             }, failure: {
                 (operation: AFHTTPRequestOperation!, err: NSError!) -> Void in

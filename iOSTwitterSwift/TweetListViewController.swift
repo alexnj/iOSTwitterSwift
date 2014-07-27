@@ -32,9 +32,8 @@ class TweetListViewController: UIViewController {
     func loadTweets() {
         TwitterClient.sharedInstance.getTimeline(20,
             success: {
-                (operation: AFHTTPRequestOperation, object: AnyObject) -> Void in
-                
-                NSLog("Success \(object)")
+                (tweets: Array<Tweet>) -> Void in
+                NSLog("Success \(tweets)")
             },
             failure: {
                 (operation: AFHTTPRequestOperation, err: NSError) -> Void in
