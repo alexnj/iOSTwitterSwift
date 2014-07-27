@@ -62,4 +62,22 @@ class TwitterClient: BDBOAuth1RequestOperationManager  {
             );
         }
     }
+    
+    // MARK: APIs
+    
+    func getTimeline(count: Int, success: ((operation: AFHTTPRequestOperation, object: AnyObject)->Void), failure: ((operation: AFHTTPRequestOperation, err: NSError)->Void)) {
+        
+        self.GET("statuses/home_timeline.json?count=100", parameters: nil,
+            success: {
+                (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
+
+                success(operation: operation, object: responseObject)
+                
+            }, failure: {
+                (operation: AFHTTPRequestOperation!, err: NSError!) -> Void in
+                
+                failure(operation: operation, err: err);
+            }
+        )
+    }
 }

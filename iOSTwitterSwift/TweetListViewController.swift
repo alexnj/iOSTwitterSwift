@@ -10,6 +10,12 @@ import UIKit
 
 class TweetListViewController: UIViewController {
 
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.loadTweets()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +25,23 @@ class TweetListViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: Implementation of tweet list.
+    
+    func loadTweets() {
+        TwitterClient.sharedInstance.getTimeline(20,
+            success: {
+                (operation: AFHTTPRequestOperation, object: AnyObject) -> Void in
+                
+                NSLog("Success \(object)")
+            },
+            failure: {
+                (operation: AFHTTPRequestOperation, err: NSError) -> Void in
+                
+                NSLog("Failure \(err)")
+            }
+        );
     }
     
 
