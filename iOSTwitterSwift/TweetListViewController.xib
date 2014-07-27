@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetListViewController" customModule="iOSTwitterSwift" customModuleProvider="target">
             <connections>
+                <outlet property="tweetList" destination="HsM-qX-TAy" id="iDT-LG-vra"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +14,19 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HsM-qX-TAy">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="HsM-qX-TAy" secondAttribute="trailing" id="3cQ-ux-MOH"/>
+                <constraint firstItem="HsM-qX-TAy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kyi-p7-NiF"/>
+                <constraint firstAttribute="bottom" secondItem="HsM-qX-TAy" secondAttribute="bottom" id="nFd-L0-i8Z"/>
+                <constraint firstItem="HsM-qX-TAy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pb5-1t-WrK"/>
+            </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
                 <size key="portraitSize" width="320" height="568"/>

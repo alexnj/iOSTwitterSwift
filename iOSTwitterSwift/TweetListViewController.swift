@@ -8,32 +8,43 @@
 
 import UIKit
 
-class TweetListViewController: UIViewController {
+class TweetListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var tweets: Array<Tweet> = Array<Tweet>()
+
+    @IBOutlet var tweetList: UITableView!
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        
-        self.loadTweets()
+        self.updateTimeline()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+            
+        self.tweetList.delegate = self
+        self.tweetList.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    // MARK: Implementation of tweet list.
+    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        return self.tweets.count
+    }
     
-    func loadTweets() {
+    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        let v: UITableViewCell = UITableViewCell()
+        v.textLabel.text = self.tweets[indexPath.row].text
+        return v
+    }
+    
+    func updateTimeline() {
         TwitterClient.sharedInstance.getTimeline(20,
             success: {
                 (tweets: Array<Tweet>) -> Void in
-                NSLog("Success \(tweets)")
+                self.tweets = tweets
+                self.tweetList.reloadData()
             },
             failure: {
                 (operation: AFHTTPRequestOperation, err: NSError) -> Void in
@@ -42,16 +53,4 @@ class TweetListViewController: UIViewController {
             }
         );
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
