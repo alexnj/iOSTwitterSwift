@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TwitterClient: BDBOAuth1RequestOperationManager {
+class TwitterClient: BDBOAuth1RequestOperationManager  {
     
     // Singleton sharedInstance implementation.
     // Using struct here since classes don't support static variables,
@@ -29,4 +29,37 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         return super.authorized
     }
     
+    func authorize() {
+        let callbackUrl: NSURL = NSURL(string: "iostwitterapp://request")
+        
+        super.fetchRequestTokenWithPath(
+            "/oauth/request_token", method: "POST", callbackURL: callbackUrl, scope: nil, success: { (requestToken: BDBOAuthToken!) -> Void in
+
+                let authUrl = "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)"
+                UIApplication.sharedApplication().openURL(NSURL.URLWithString(authUrl));
+                
+            }, failure: { (requestToken:NSError!) -> Void in
+                NSLog("Failed to get request token \(requestToken)")
+            }
+        )
+    }
+
+    func handleOAuthCallback(queryString: NSString, onSuccess: (()->Void)!) {
+        let parameters: NSDictionary = NSDictionary(fromQueryString: queryString)
+
+        // Cast to AnyObject? that would help evaluate a nil situation.
+        if (parameters[BDBOAuth1OAuthTokenParameter] as AnyObject? &&
+            parameters[BDBOAuth1OAuthVerifierParameter] as AnyObject? ) {
+            super.fetchAccessTokenWithPath("/oauth/access_token", method: "POST", requestToken: BDBOAuthToken(queryString: queryString), success: {(token: BDBOAuthToken!) -> Void in
+                    NSLog("Got oAuth callback Token: \(token)")
+                
+                    if (onSuccess) {
+                        onSuccess();
+                    }
+                }, failure: { (error: NSError!) -> Void in
+                    NSLog("Failed to get oAuth callback. Error: \(error)")
+                }
+            );
+        }
+    }
 }
