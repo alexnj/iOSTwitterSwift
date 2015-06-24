@@ -25,7 +25,7 @@ class TweetTableViewCell: UITableViewCell {
     set(tweet) {
         self._tweet = tweet
         
-        if (tweet) {
+        if ((tweet) != nil) {
             self.userName.text = tweet!.user.name
             self.userScreenName.text = tweet!.user.screenName
             self.tweetText.text = tweet!.text
@@ -33,7 +33,7 @@ class TweetTableViewCell: UITableViewCell {
             
             // Set image.
             NSURLConnection.sendAsynchronousRequest(
-                NSURLRequest(URL: NSURL(string: tweet!.user.profileImageUrl)),
+                NSURLRequest(URL: NSURL(string: tweet!.user.profileImageUrl)!),
                 queue: NSOperationQueue.mainQueue(),
                 completionHandler: {
                     (response: NSURLResponse!, data: NSData!, err: NSError!) -> Void in
@@ -47,8 +47,8 @@ class TweetTableViewCell: UITableViewCell {
     }
     
     func setImageOnMainThread(imageView: UIImageView, image: UIImage?) {
-        if (!image) {
-            return;
+        if (image == nil) {
+            return
         }
         
         dispatch_async(dispatch_get_main_queue(),
