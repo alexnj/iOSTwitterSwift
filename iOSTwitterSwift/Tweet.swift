@@ -66,16 +66,16 @@ class Tweet {
     class func fromJsonTweet(dictTweet: NSDictionary) -> Tweet {
         var tweet = Tweet();
         
-        tweet.text = dictTweet["text"] as String
+        tweet.text = dictTweet["text"] as! String
         if let url: String = dictTweet["url"] as? String {
             tweet.url = NSURL(string: url)
         }
         
         let formatter: NSDateFormatter = NSDateFormatter()
         formatter.dateFormat = "eee, MMM dd HH:mm:ss ZZZZ yyyy"
-        tweet.createdAt = formatter.dateFromString(dictTweet["created_at"] as String)
+        tweet.createdAt = formatter.dateFromString(dictTweet["created_at"] as! String)
         
-        tweet.user = User.fromDictionary(dictTweet["user"] as NSDictionary);
+        tweet.user = User.fromDictionary(dictTweet["user"] as! NSDictionary);
 
         return tweet;
     }

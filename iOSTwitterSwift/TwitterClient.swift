@@ -20,23 +20,27 @@ class TwitterClient: BDBOAuth1RequestOperationManager  {
         return Static.instance
     }
 
-    init() {
-        let apiUrl: NSURL = NSURL(string: "https://api.twitter.com/1.1/");
+    override init() {
+        let apiUrl: NSURL = NSURL(string: "https://api.twitter.com/1.1/")!;
         super.init(baseURL: apiUrl, consumerKey: consumerKey, consumerSecret: consumerSecret);
     }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
-    func isAuthorized() -> Bool {
+    func isAuthorizedGetter() -> Bool {
         return super.authorized
     }
     
     func authorize() {
-        let callbackUrl: NSURL = NSURL(string: "iostwitterapp://request")
+        let callbackUrl: NSURL = NSURL(string: "iostwitterapp://request")!
         
         super.fetchRequestTokenWithPath(
             "/oauth/request_token", method: "POST", callbackURL: callbackUrl, scope: nil, success: { (requestToken: BDBOAuthToken!) -> Void in
 
                 let authUrl = "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)"
-                UIApplication.sharedApplication().openURL(NSURL.URLWithString(authUrl));
+                UIApplication.sharedApplication().openURL(NSURL(string: authUrl)!);
                 
             }, failure: { (requestToken:NSError!) -> Void in
                 NSLog("Failed to get request token \(requestToken)")
@@ -45,15 +49,15 @@ class TwitterClient: BDBOAuth1RequestOperationManager  {
     }
 
     func handleOAuthCallback(queryString: NSString, onSuccess: (()->Void)!) {
-        let parameters: NSDictionary = NSDictionary(fromQueryString: queryString)
+        let parameters: NSDictionary = NSDictionary(fromQueryString: queryString as String)
 
         // Cast to AnyObject? that would help evaluate a nil situation.
-        if (parameters[BDBOAuth1OAuthTokenParameter] as AnyObject? &&
-            parameters[BDBOAuth1OAuthVerifierParameter] as AnyObject? ) {
-            super.fetchAccessTokenWithPath("/oauth/access_token", method: "POST", requestToken: BDBOAuthToken(queryString: queryString), success: {(token: BDBOAuthToken!) -> Void in
+        if (parameters[BDBOAuth1OAuthTokenParameter] != nil &&
+            (parameters[BDBOAuth1OAuthVerifierParameter] as AnyObject? ) != nil) {
+            super.fetchAccessTokenWithPath("/oauth/access_token", method: "POST", requestToken: BDBOAuthToken(queryString: queryString as String), success: {(token: BDBOAuthToken!) -> Void in
                     NSLog("Got oAuth callback Token: \(token)")
                 
-                    if (onSuccess) {
+                    if (onSuccess != nil) {
                         onSuccess();
                     }
                 }, failure: { (error: NSError!) -> Void in
@@ -72,7 +76,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager  {
                 (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
                 
                 var tweets: Array<Tweet> = Array();
-                let tweetsDictionaryArray: Array<Dictionary<String,AnyObject>> = response as Array<Dictionary<String,AnyObject>>;
+                let tweetsDictionaryArray: Array<Dictionary<String,AnyObject>> = response as! Array<Dictionary<String,AnyObject>>;
                 for tweet in tweetsDictionaryArray {
                     tweets.append(Tweet.fromJsonTweet(tweet));
                 }

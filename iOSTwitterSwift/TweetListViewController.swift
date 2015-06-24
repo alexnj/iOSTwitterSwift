@@ -13,7 +13,8 @@ class TweetListViewController: UIViewController, UITableViewDelegate, UITableVie
     private var _prototypeCell: TweetTableViewCell?
     
     private var prototypeCell: TweetTableViewCell {
-        if (!self._prototypeCell) {
+        let zz = self._prototypeCell
+        if (zz == nil) {
             self._prototypeCell = self.tweetList.dequeueReusableCellWithIdentifier("TweetTableViewCell") as? TweetTableViewCell
         }
         return self._prototypeCell!
@@ -24,6 +25,10 @@ class TweetListViewController: UIViewController, UITableViewDelegate, UITableVie
     init() {
         super.init(nibName: nil, bundle: nil)
         self.updateTimeline()
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -47,7 +52,7 @@ class TweetListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let cell: TweetTableViewCell = tableView.dequeueReusableCellWithIdentifier("TweetTableViewCell", forIndexPath: indexPath!) as TweetTableViewCell
+        let cell: TweetTableViewCell = tableView.dequeueReusableCellWithIdentifier("TweetTableViewCell", forIndexPath: indexPath!) as! TweetTableViewCell
         cell.tweet = self.tweets[indexPath.row];
         return cell;
     }
